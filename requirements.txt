@@ -2,3 +2,5 @@ python-dotenv==1.0.1
 python-json-logger==3.3.0
 SQLAlchemy==2.0.39
 asyncpg==0.30.0
+backoff==2.2.1
+websockets==15.0.1
