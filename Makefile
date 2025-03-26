@@ -1,8 +1,9 @@
 up:
-	docker compose  up --build -d --force-recreate
-	docker compose logs -f
+	docker compose -f docker-compose.dc.yml -p dc up --build -d --force-recreate
+	docker compose -f docker-compose.dc.yml -p dc logs -f
+
 bg:
-	docker compose up -d --build --force-recreate
+	docker compose -f docker-compose.dc.yml -p dc up -d --build --force-recreate
 
 down:
-	docker compose down
+	docker compose -f docker-compose.dc.yml -p dc down
