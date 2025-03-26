@@ -44,8 +44,11 @@ services:
       - "5050:80"
     networks:
       - app_network
-    healthcheck:
-      test: ["CMD-SHELL", "curl --fail http://localhost:80 || exit 1"]
+    # healthcheck:
+        # test: ["CMD-SHELL", "sleep 10 && curl --fail http://localhost:80 || exit 1"]
+        # interval: 5s
+        # timeout: 5s
+        # retries: 10
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     depends_on:
