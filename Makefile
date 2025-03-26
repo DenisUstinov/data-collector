@@ -7,3 +7,6 @@ bg:
 
 down:
 	docker compose -f docker-compose.dc.yml -p dc down
+
+cl:
+	docker compose -f docker-compose.dc.yml -p dc down --volumes --rmi all --remove-orphans
