@@ -1,12 +1,16 @@
+APP = data-collector
+COMPOSE_FILE = -f docker-compose.$(APP).yml
+PROJECT_NAME = -p $(APP)
+
 up:
-	docker compose -f docker-compose.dc.yml -p dc up --build -d --force-recreate
-	docker compose -f docker-compose.dc.yml -p dc logs -f
+	@docker compose $(COMPOSE_FILE) $(PROJECT_NAME) up --build -d --force-recreate
+	@docker compose $(COMPOSE_FILE) $(PROJECT_NAME) logs -f
 
 bg:
-	docker compose -f docker-compose.dc.yml -p dc up -d --build --force-recreate
+	@docker compose $(COMPOSE_FILE) $(PROJECT_NAME) up -d
 
-down:
-	docker compose -f docker-compose.dc.yml -p dc down
+dn:
+	@docker compose $(COMPOSE_FILE) $(PROJECT_NAME) down
 
 cl:
-	docker compose -f docker-compose.dc.yml -p dc down --volumes --rmi all --remove-orphans
+	@docker compose $(COMPOSE_FILE) $(PROJECT_NAME) down --volumes --rmi all --remove-orphans
