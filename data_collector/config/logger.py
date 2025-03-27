@@ -2,7 +2,7 @@ import logging
 import os
 from pythonjsonlogger import jsonlogger
 
-LOG_DIR = "logs"
+LOG_DIR = "/app/logs"
 LOG_LEVEL = logging.DEBUG if os.getenv("ENV", "prod") == "dev" else logging.INFO
 
 LOGGING = {

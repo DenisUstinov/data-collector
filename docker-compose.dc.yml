@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    user: "1000:1000"
     environment:
       - ENV=${ENV}
       - POSTGRES_HOST=${POSTGRES_HOST}
@@ -15,8 +16,8 @@ services:
     networks:
       - app_network
     volumes:
-      - logs:/logs
-    # restart: unless-stopped
+      - ./logs:/app/logs
+    restart: unless-stopped
 
   postgres:
     image: postgres
@@ -44,11 +45,6 @@ services:
       - "5050:80"
     networks:
       - app_network
-    # healthcheck:
-        # test: ["CMD-SHELL", "sleep 10 && curl --fail http://localhost:80 || exit 1"]
-        # interval: 5s
-        # timeout: 5s
-        # retries: 10
     volumes:
       - pgadmin_data:/var/lib/pgadmin
     depends_on:
@@ -58,7 +54,6 @@ services:
 
 volumes:
   logs:
-    driver: local
   pgadmin_data:
   postgres_data:
 
