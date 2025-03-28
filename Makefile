@@ -1,4 +1,4 @@
-APP = data-collector
+APP = dc
 COMPOSE_FILE = -f docker-compose.$(APP).yml
 PROJECT_NAME = -p $(APP)
 
@@ -14,3 +14,6 @@ dn:
 
 cl:
 	@docker compose $(COMPOSE_FILE) $(PROJECT_NAME) down --volumes --rmi all --remove-orphans
+
+en:
+	cp .env.example .env
