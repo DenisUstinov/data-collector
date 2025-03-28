@@ -1,19 +1,29 @@
 import json
 
+BTC_ETH_USDT_KTZ_RUB = [
+    "BTC_ETH",
+    "BTC_USDT",
+    "ETH_USDT",
+    "BTC_KTZ",
+    "ETH_KTZ",
+    "BTC_RUB",
+    "ETH_RUB"
+]
+
+SPOT_TRADES_TOPIC = "spot/trades:"
+SPOT_TICKER_TOPIC = "spot/ticker:"
+SPOT_ORDER_BOOK_SNAPSHOTS_TOPIC = "spot/order_book_snapshots:"
+
 DATA = {
     "url": "wss://ws-api.exmo.com:443/v1/public",
-    "pairs": [
-        "BTC_USDT",
-        "ETH_USDT",
-        "BTC_ETH",
-    ],
+    "pairs": BTC_ETH_USDT_KTZ_RUB,
     "init_messages": [
         {
             "method": "subscribe",
             "topics": [
-                "spot/trades:",
-                "spot/ticker:",
-                "spot/order_book_snapshots:",
+                SPOT_TRADES_TOPIC,
+                SPOT_TICKER_TOPIC,
+                SPOT_ORDER_BOOK_SNAPSHOTS_TOPIC,
             ]
         }
     ]

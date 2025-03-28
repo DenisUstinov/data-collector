@@ -1,3 +1,3 @@
 from .logger import LOG_DIR, LOGGING
 from .db import DATABASE_URL
-from .client import DATA
+from .client import DATA, SPOT_TRADES_TOPIC, SPOT_TICKER_TOPIC, SPOT_ORDER_BOOK_SNAPSHOTS_TOPIC

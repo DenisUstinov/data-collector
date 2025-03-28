@@ -1,6 +1,7 @@
 import json
 import logging
 from .models import Trade, Ticker, Order
+from .config import SPOT_TRADES_TOPIC, SPOT_TICKER_TOPIC, SPOT_ORDER_BOOK_SNAPSHOTS_TOPIC
 
 logger = logging.getLogger(__name__)
 
@@ -16,19 +17,19 @@ class Handler:
                 topic = data.get("topic")
                 pair = topic.split(":")[1]
 
-                if topic.startswith("spot/ticker:"):
-                    item = data["data"]
-                    item.pop("updated", None)
-                    item["ts"] = ts
-                    item["pair"] = pair
-                    await self.process(Ticker, Handler.process_ticker_data(item))
-                elif topic.startswith("spot/trades:"):
+                if topic.startswith(SPOT_TRADES_TOPIC,):
                     for item in data["data"]:
                         item["ts"] = ts
                         item["pair"] = pair
                         item.pop("date", None)
                         await self.process(Trade, Handler.process_trade_data(item))
-                elif topic.startswith("spot/orders:") or topic.startswith("orders"):
+                elif topic.startswith(SPOT_TICKER_TOPIC):
+                    item = data["data"]
+                    item.pop("updated", None)
+                    item["ts"] = ts
+                    item["pair"] = pair
+                    await self.process(Ticker, Handler.process_ticker_data(item))
+                elif topic.startswith(SPOT_ORDER_BOOK_SNAPSHOTS_TOPIC) or topic.startswith("orders"):
                     item = data["data"]
                     item["ts"] = ts
                     item["pair"] = pair
