@@ -27,7 +27,7 @@ class Client:
                         response = await websocket.recv()
                         await self.response_handler(response)
                     except websockets.exceptions.ConnectionClosed as e:
-                        logger.warning(f"WebSocket closed: {e}")
+                        logger.warning(f"WebSocket closed with code {e.code}, reason: {e.reason}")
                         break
                     except asyncio.TimeoutError:
                         logger.warning("Timeout error while waiting for message.")
